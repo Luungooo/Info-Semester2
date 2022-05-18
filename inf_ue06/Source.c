@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include "binarytree.h"
 
-bt *createNode(char value) {
-    bt *newNode = (bt *) malloc(sizeof(bt));
+bt* createNode(char value) {
+    bt* newNode = (bt*)malloc(sizeof(bt));
     if (newNode == NULL) {
         exit(1);
     }
@@ -13,7 +13,7 @@ bt *createNode(char value) {
     return newNode;
 }
 
-void traversePreorder(bt *root) {
+void traversePreorder(bt* root) {
     if (root != NULL) {
         printf("%c", root->value);
         traversePreorder(root->left);
@@ -21,7 +21,7 @@ void traversePreorder(bt *root) {
     }
 }
 
-void traverseInorder(bt *root) {
+void traverseInorder(bt* root) {
     if (root != NULL) {
         traverseInorder(root->left);
         printf("%c", root->value);
@@ -29,7 +29,7 @@ void traverseInorder(bt *root) {
     }
 }
 
-void traversePostorder(bt *root) {
+void traversePostorder(bt* root) {
     if (root != NULL) {
         traversePostorder(root->left);
         traversePostorder(root->right);
@@ -37,7 +37,7 @@ void traversePostorder(bt *root) {
     }
 }
 
-int getDepth(bt *root) {
+int getDepth(bt* root) {
     if (root == NULL) {
         return 0;
     }
@@ -64,7 +64,7 @@ void deleteTree(bt** rootPtr) {
 }
 
 int main() {
-    bt *root = createNode('A');
+    bt* root = createNode('A');
     root->left = createNode('B');
     root->right = createNode('C');
     root->left->left = createNode('D');

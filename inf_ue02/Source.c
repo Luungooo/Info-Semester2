@@ -4,7 +4,7 @@
 
 void printList(myList* a) {
     printf("%d\n", a->value);
-    if(a->next != NULL) {
+    if (a->next != NULL) {
         printList(a->next);
     }
 }

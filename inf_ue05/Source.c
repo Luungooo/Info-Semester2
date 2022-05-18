@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include "myList.h"
 
-int addToTail(myList *current, int value) {
+int addToTail(myList* current, int value) {
     if (current == NULL) {
         return 1;
     }
-    myList *newElement = (myList *) malloc(sizeof(myList));
+    myList* newElement = (myList*)malloc(sizeof(myList));
     if (newElement == NULL) {
         return 1;
     }
@@ -19,7 +19,7 @@ int addToTail(myList *current, int value) {
     return 0;
 }
 
-int printList(myList *a) {
+int printList(myList* a) {
     if (a == NULL) {
         printf("Uebergebene Liste ist leer!\n");
         return 0;
@@ -31,14 +31,14 @@ int printList(myList *a) {
     return 1;
 }
 
-int removeFromTail(myList **ptrToHead) {
+int removeFromTail(myList** ptrToHead) {
     if (ptrToHead == NULL) {
         return 0;
     }
     if (*ptrToHead == NULL) {
         return 0;
     }
-    myList *current = *ptrToHead;
+    myList* current = *ptrToHead;
     if (current->next == NULL) {
         free(current);
         *ptrToHead = NULL;
@@ -52,7 +52,7 @@ int removeFromTail(myList **ptrToHead) {
     return 1;
 }
 
-int deleteList(myList **ptrToHead) {
+int deleteList(myList** ptrToHead) {
     if (ptrToHead == NULL) {
         return 0;
     }
@@ -63,85 +63,85 @@ int deleteList(myList **ptrToHead) {
     return 1;
 }
 
-int addSorted(myList **ptrToHead, int value) {
-    myList* newElement = (myList*) malloc(sizeof(myList));
-    if(newElement == NULL) {
+int addSorted(myList** ptrToHead, int value) {
+    myList* newElement = (myList*)malloc(sizeof(myList));
+    if (newElement == NULL) {
         return 0;
     }
     newElement->value = value;
     newElement->next = NULL;
     myList* current = *ptrToHead;
-    if(current == NULL) {
+    if (current == NULL) {
         *ptrToHead = newElement;
         return 1;
     }
-    if(current->value > value) {
-            newElement->next = current;
-            *ptrToHead = newElement;
-            return 1;
-        }
-    while(current->next != NULL && current->next->value < value) {
+    if (current->value > value) {
+        newElement->next = current;
+        *ptrToHead = newElement;
+        return 1;
+    }
+    while (current->next != NULL && current->next->value < value) {
         current = current->next;
-        }
+    }
     newElement->next = current->next;
     current->next = newElement;
     return 1;
 }
 
 int main() {
-    myList *head = NULL;
-    head = (myList *) malloc(sizeof(myList));
+    myList* head = NULL;
+    head = (myList*)malloc(sizeof(myList));
     if (head == NULL) {
-        printf("Konnte Element nicht hinzufÃ¼gen!\n");
+        printf("Konnte Element nicht hinzufügen!\n");
         return EXIT_FAILURE;
     }
     head->value = 1;
     head->next = NULL;
     if (addToTail(head, 23)) {
-        printf("Konnte Element nicht hinzufÃ¼gen!\n");
+        printf("Konnte Element nicht hinzufügen!\n");
         return EXIT_FAILURE;
     }
     if (addToTail(head, 56)) {
-        printf("Konnte Element nicht hinzufÃ¼gen!\n");
+        printf("Konnte Element nicht hinzufügen!\n");
         return EXIT_FAILURE;
     }
     printList(head);
     deleteList(&head);
     printList(head);
 
-    myList *headOfSortedList = NULL;
+    myList* headOfSortedList = NULL;
     if (!addSorted(&headOfSortedList, 5)) {
-        printf("Konnte Element nicht hinzufÃ¼gen!\n");
+        printf("Konnte Element nicht hinzufügen!\n");
         return EXIT_FAILURE;
     }
     printList(headOfSortedList);
     printf("\n");
     if (!addSorted(&headOfSortedList, 3)) {
-        printf("Konnte Element nicht hinzufÃ¼gen!\n");
+        printf("Konnte Element nicht hinzufügen!\n");
         return EXIT_FAILURE;
     }
     printList(headOfSortedList);
     printf("\n");
     if (!addSorted(&headOfSortedList, 53)) {
-        printf("Konnte Element nicht hinzufÃ¼gen!\n");
+        printf("Konnte Element nicht hinzufügen!\n");
         return EXIT_FAILURE;
     }
     printList(headOfSortedList);
     printf("\n");
     if (!addSorted(&headOfSortedList, 1)) {
-        printf("Konnte Element nicht hinzufÃ¼gen!\n");
+        printf("Konnte Element nicht hinzufügen!\n");
         return EXIT_FAILURE;
     }
     printList(headOfSortedList);
     printf("\n");
     if (!addSorted(&headOfSortedList, 66)) {
-        printf("Konnte Element nicht hinzufÃ¼gen!\n");
+        printf("Konnte Element nicht hinzufügen!\n");
         return EXIT_FAILURE;
     }
     printList(headOfSortedList);
     printf("\n");
     if (!addSorted(&headOfSortedList, 12)) {
-        printf("Konnte Element nicht hinzufÃ¼gen!\n");
+        printf("Konnte Element nicht hinzufügen!\n");
         return EXIT_FAILURE;
     }
     printList(headOfSortedList);

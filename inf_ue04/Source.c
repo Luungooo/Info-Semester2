@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include "myList.h"
 
-int addToTail(myList* current,int value) {
+int addToTail(myList* current, int value) {
     if (current == NULL) {
         return 1;
     }
-    myList* newElement = (myList*) malloc(sizeof(myList));
+    myList* newElement = (myList*)malloc(sizeof(myList));
     if (newElement == NULL) {
         return 1;
     }
@@ -25,7 +25,7 @@ void printList(myList* a) {
         return;
     }
     printf("%d\n", a->value);
-    if(a->next != NULL) {
+    if (a->next != NULL) {
         printList(a->next);
     }
 }
@@ -61,15 +61,15 @@ void removeFromTail(myList** ptrToHead) {
 
 int main() {
     myList* head = NULL;
-    head = (myList*) malloc(sizeof(myList));
+    head = (myList*)malloc(sizeof(myList));
     if (head == NULL) {
-        printf("Konnte Element nicht hinzufÃ¼gen!\n");
+        printf("Konnte Element nicht hinzufügen!\n");
         return EXIT_FAILURE;
     }
     head->value = 1;
     head->next = NULL;
-    if(addToTail(head, 23) == 1) {
-        printf("Konnte Element nicht hinzufÃ¼gen!\n");
+    if (addToTail(head, 23) == 1) {
+        printf("Konnte Element nicht hinzufügen!\n");
         return EXIT_FAILURE;
     }
     printList(head);
