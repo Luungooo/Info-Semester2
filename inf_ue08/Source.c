@@ -185,5 +185,15 @@ int main() {
 	bst* root2 = NULL;
 	int result = findByBreadthFirstSearch(root, 20);
 	deleteTree(&root);
+	int x = 2147483647;
+	int y = 783465;
+	x = x ^ y;
+	y = x ^ y;
+	x = x ^ y;
+	x = 2147483647;
+	y = 783465;
+	x = x + y;
+	y = x - y;
+	x = x - y;
 	return 0;
 }
