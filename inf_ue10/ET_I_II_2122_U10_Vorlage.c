@@ -188,10 +188,37 @@ void depthSearch(node* nodeList, char startNode) {
  */
 int findByDepthSearch(node* nodeList, char startNode, char candidate) {
 
-
-
-
-
+	if (nodeList == NULL) {
+		printf("Invalid pointer given!\n");
+		return;
+	}
+	node* current = nodeList;
+	node* node = NULL;
+	while (1) {
+		if (current == NULL) {
+			return;
+		}
+		if (current->name == startNode) {
+			node = current;
+			break;
+		}
+		current = current->next;
+	}
+	node->visited = 1;
+	if (node->name == candidate) {
+		return 1;
+	}
+	else {
+		edge* currentEdge = node->edges;
+		while (currentEdge != NULL) {
+			if (!(currentEdge->toNode->visited)) {
+				if (findByDepthSearch(nodeList, currentEdge->toNode->name, candidate)) {
+					return 1;
+				}
+			}
+			currentEdge = currentEdge->next;
+		}
+	}
 
 
 
@@ -244,26 +271,42 @@ void freeAdjacencyMatrix(adM** myAdM) {
  * builds an adjacency matrix representation of the graph
  */
 adM* createAdjacencyMatrix(node* nodeList) {
-
-
-/*
-
-                                        888                 888
-                                        888                 888
-                                        888                 888
-888  888  .d88b.  888  888 888d888      888888 .d88b.   .d88888  .d88b.
-888  888 d88""88b 888  888 888P"        888   d88""88b d88" 888 d88""88b
-888  888 888  888 888  888 888          888   888  888 888  888 888  888
-Y88b 888 Y88..88P Y88b 888 888          Y88b. Y88..88P Y88b 888 Y88..88P
- "Y88888  "Y88P"   "Y88888 888           "Y888 "Y88P"   "Y88888  "Y88P"
-     888
-Y8b d88P
- "Y88P"
-
-
- */
-
-	return NULL;
+	if (nodeList == NULL) {
+		printf("Invalid pointer given!\n");
+		return;
+	}
+	unsigned int numberOfNodes = 1;
+	node* current = nodeList;
+	while (current->next != NULL) {
+		numberOfNodes++;
+		current = current->next;
+	}
+	adM* newAdjacencyMatrix = (adM*) malloc(sizeof(adM));
+	newAdjacencyMatrix->numberOfNodes = numberOfNodes;
+	newAdjacencyMatrix->A = (unsigned int**) malloc(numberOfNodes * sizeof(unsigned int*));
+	for (int i = 0; i < numberOfNodes; i++) {
+		newAdjacencyMatrix->A[i] = (unsigned int*)calloc(numberOfNodes, sizeof(unsigned int));
+	}
+	newAdjacencyMatrix->names = (char*)malloc(numberOfNodes * sizeof(char));
+	current = nodeList;
+	int i = 0;
+	int j = 0;
+	edge* currentEdge;
+	while (current != NULL) {
+		newAdjacencyMatrix->names[i] = current->name;
+		j = 0;
+		currentEdge = current->edges;
+		if (currentEdge != NULL) {
+			while (currentEdge != NULL) {
+				newAdjacencyMatrix->A[i][j] = currentEdge->distance;
+				j++;
+				currentEdge = currentEdge->next;
+			}
+		}
+		current = current->next;
+		i++;
+	}
+	return newAdjacencyMatrix;
 }
 
 /*
