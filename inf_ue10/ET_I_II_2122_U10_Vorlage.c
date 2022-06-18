@@ -1,26 +1,6 @@
-/*
- ============================================================================
- Name        : ET_I_II_2122_U10.c
- Author      : Prof. Dr. Alexander Biedermann
- Version     : v3.0
- Copyright   : Prof. Dr. Alexander Biedermann
- Description : Graph traversal
- ============================================================================
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include "graph.h"
-
-/*
- *                                                               _             _
- *  _ __   ___ _ __    __ _ ___ _ __   ___ _ __ __ _    __ _  __| |   __ _ ___| |_ _ __ __ _
- * | '_ \ / _ \ '__|  / _` / __| '_ \ / _ \ '__/ _` |  / _` |/ _` |  / _` / __| __| '__/ _` |
- * | |_) |  __/ |    | (_| \__ \ |_) |  __/ | | (_| | | (_| | (_| | | (_| \__ \ |_| | | (_| |
- * | .__/ \___|_|     \__,_|___/ .__/ \___|_|  \__,_|  \__,_|\__,_|  \__,_|___/\__|_|  \__,_|
- * |_|                         |_|
- *
- */
 
 void addNode(node** nodeList, char Name) {
 	if (nodeList == NULL) {
@@ -275,9 +255,9 @@ adM* createAdjacencyMatrix(node* nodeList) {
 		printf("Invalid pointer given!\n");
 		return;
 	}
-	unsigned int numberOfNodes = 1;
+	unsigned int numberOfNodes = 0;
 	node* current = nodeList;
-	while (current->next != NULL) {
+	while (current != NULL) {
 		numberOfNodes++;
 		current = current->next;
 	}
@@ -292,14 +272,24 @@ adM* createAdjacencyMatrix(node* nodeList) {
 	int i = 0;
 	int j = 0;
 	edge* currentEdge;
+	node* currentNode;
 	while (current != NULL) {
 		newAdjacencyMatrix->names[i] = current->name;
-		j = 0;
 		currentEdge = current->edges;
 		if (currentEdge != NULL) {
 			while (currentEdge != NULL) {
+				j = 0;
+				currentNode = nodeList;
+				while (1) {
+					if (currentEdge->toNode->name == currentNode->name) {
+						break;
+					}
+					else {
+						j++;
+						currentNode = currentNode->next;
+					}
+				}
 				newAdjacencyMatrix->A[i][j] = currentEdge->distance;
-				j++;
 				currentEdge = currentEdge->next;
 			}
 		}
