@@ -184,7 +184,7 @@ void callSorter(void(*f)(int*,long unsigned int), numArrays* nA, char* name) {
 	printf(
 			"Do you want to print the array contents before and after sorting by %s? (not recommended for larger lists (>10)) [y/n]?\n", name);
 	char print = getchar();
-	scanf("%*c%*c");
+	scanf("%*c");
 	(print == 'y' || print == 'Y') ? printArrays(nA) : 0;
 	printf("Now starting sorting by %s.\n", name);
 	callSorterForArray(f, nA->randomArray, nA->numElements, name, "random");
@@ -201,7 +201,7 @@ int getUserInput() {
 	int LENGTH_OF_LISTS;
 		printf(
 				"Please enter length of lists (Start with small numbers (5-10), the fun begins at lengths > 100000): \n");
-		scanf("%d%*c%*c", &LENGTH_OF_LISTS);
+		scanf("%d%*c", &LENGTH_OF_LISTS);
 		if (LENGTH_OF_LISTS < 1) {
 			printf("Invalid length given! Aborting...\n");
 			return -1;

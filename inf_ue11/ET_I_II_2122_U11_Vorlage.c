@@ -1,20 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "numArrays.h"
 #include "sortingHelperStructures.h"
 
 void mySort(int* myArray, unsigned long length) {
+	unsigned long j = 1;
 	while (!isSortedArray(myArray, length)) {
-		for (unsigned long i = 0; i < length - 1; i++) {
+		for (unsigned long i = 0; i < length - j; i++) {
 				if (myArray[i] > myArray[i + 1]) {
 					myArray[i] = myArray[i] ^ myArray[i + 1];
 					myArray[i + 1] = myArray[i] ^ myArray[i + 1];
 					myArray[i] = myArray[i] ^ myArray[i + 1];
 				}
 			}
+		j++;
 	}
 }
-
 
 void quicksort(int* myArray, unsigned long length) {
 	if (isSortedArray(myArray, length)) {
@@ -55,7 +57,7 @@ void quicksort(int* myArray, unsigned long length) {
 int main(void) {
 	//you don't need to make any changes to the code below.
 	//but feel free, if you like ...
-	setvbuf(stdout, 0, _IONBF, 0);
+	srand(time(0));
 	numArrays* myNA = initializeArrays(getUserInput());
 
 	//If you look closely, we do some interesting stuff here:
@@ -64,7 +66,6 @@ int main(void) {
 	//you will see, how the parameter list looks like
 	callSorter(mySort, myNA, "mySort");
 	callSorter(quicksort, myNA, "Quicksort");
-
 
 	deleteNumArray(&myNA);
 	return EXIT_SUCCESS;
