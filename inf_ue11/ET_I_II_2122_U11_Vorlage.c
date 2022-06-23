@@ -6,6 +6,7 @@
 
 void mySort(int* myArray, unsigned long length) {
 	unsigned long j = 1;
+
 	while (!isSortedArray(myArray, length)) {
 		for (unsigned long i = 0; i < length - j; i++) {
 				if (myArray[i] > myArray[i + 1]) {
@@ -15,6 +16,26 @@ void mySort(int* myArray, unsigned long length) {
 				}
 			}
 		j++;
+	}
+}
+
+void shuffle(int* myArray, unsigned long length) {
+	unsigned long r;
+	srand(time(0));
+
+	for(unsigned long i = 0; i < length; i++) {
+		r = rand() % length;
+		if (r != i) {
+			myArray[i] = myArray[i] ^ myArray[r];
+			myArray[r] = myArray[i] ^ myArray[r];
+			myArray[i] = myArray[i] ^ myArray[r];
+		}
+	}
+}
+
+void bogoSort(int* myArray, unsigned long length) {
+	while (!isSortedArray(myArray, length)) {
+		shuffle(myArray, length);
 	}
 }
 
