@@ -4,17 +4,17 @@
 #include "time.h"
 
 void deleteNumArray(numArrays** nA) {
-	if(nA == NULL) {
-		return;
-	}
-	if (*nA == NULL) {
-		return;
-	}
-	free((*nA)->inverseSortedArray);
-	free((*nA)->presortedArray);
-	free((*nA)->randomArray);
-	free(*nA);
-	*nA = NULL;
+    if (nA == NULL) {
+        return;
+    }
+    if (*nA == NULL) {
+        return;
+    }
+    free((*nA)->inverseSortedArray);
+    free((*nA)->presortedArray);
+    free((*nA)->randomArray);
+    free(*nA);
+    *nA = NULL;
 }
 
 /*
@@ -25,19 +25,19 @@ void deleteNumArray(numArrays** nA) {
  * to a descending sequence ending at 0.
  */
 void initializeArrayContents(numArrays* nA) {
-	if (nA == NULL) {
-		printf("Empty structure given!\n");
-		return;
-	}
-	if(nA->inverseSortedArray == NULL || nA->presortedArray == NULL || nA->randomArray == NULL) {
-		printf("Arrays not correctly initialized!\n");
-		return;
-	}
-	for (unsigned long i = 0; i < nA->numElements; i++) {
-		nA->presortedArray[i] = i;
-		nA->inverseSortedArray[nA->numElements - 1 - i] = i;
-		nA->randomArray[i] = rand();
-	}
+    if (nA == NULL) {
+        printf("Empty structure given!\n");
+        return;
+    }
+    if (nA->inverseSortedArray == NULL || nA->presortedArray == NULL || nA->randomArray == NULL) {
+        printf("Arrays not correctly initialized!\n");
+        return;
+    }
+    for (unsigned long i = 0; i < nA->numElements; i++) {
+        nA->presortedArray[i] = i;
+        nA->inverseSortedArray[nA->numElements - 1 - i] = i;
+        nA->randomArray[i] = rand();
+    }
 }
 
 /*
@@ -47,31 +47,31 @@ void initializeArrayContents(numArrays* nA) {
  * is called. This is done by the callSorter function
  */
 numArrays* initializeArrays(unsigned long numElements) {
-	numArrays* nA = (numArrays*) malloc(sizeof(numArrays));
-	if (nA == NULL) {
-		printf("Could not allocate memory!\n");
-		exit(1);
-	}
-	nA->numElements = numElements;
-	nA->randomArray = (int*) calloc(nA->numElements, sizeof(int));
-	if (nA->randomArray == NULL) {
-		printf("Could not allocate memory!\n");
-		deleteNumArray(&nA);
-		exit(1);
-	}
-	nA->presortedArray = (int*) calloc(nA->numElements, sizeof(int));
-	if (nA->presortedArray == NULL) {
-		printf("Could not allocate memory!\n");
-		deleteNumArray(&nA);
-		exit(1);
-	}
-	nA->inverseSortedArray = (int*) calloc(nA->numElements, sizeof(int));
-	if (nA->inverseSortedArray == NULL) {
-		printf("Could not allocate memory!\n");
-		deleteNumArray(&nA);
-		exit(1);
-	}
-	return nA;
+    numArrays* nA = (numArrays*) malloc(sizeof(numArrays));
+    if (nA == NULL) {
+        printf("Could not allocate memory!\n");
+        exit(1);
+    }
+    nA->numElements = numElements;
+    nA->randomArray = (int*) calloc(nA->numElements, sizeof(int));
+    if (nA->randomArray == NULL) {
+        printf("Could not allocate memory!\n");
+        deleteNumArray(&nA);
+        exit(1);
+    }
+    nA->presortedArray = (int*) calloc(nA->numElements, sizeof(int));
+    if (nA->presortedArray == NULL) {
+        printf("Could not allocate memory!\n");
+        deleteNumArray(&nA);
+        exit(1);
+    }
+    nA->inverseSortedArray = (int*) calloc(nA->numElements, sizeof(int));
+    if (nA->inverseSortedArray == NULL) {
+        printf("Could not allocate memory!\n");
+        deleteNumArray(&nA);
+        exit(1);
+    }
+    return nA;
 }
 
 /*
@@ -80,19 +80,19 @@ numArrays* initializeArrays(unsigned long numElements) {
  * is returned, else a 1.
  */
 int isSortedArray(int* array, unsigned long length) {
-	if (array == NULL) {
-		printf("Empty array given!\n");
-		return -1;
-	}
-	if (length == 1) {
-		return 1;
-	}
-	for (unsigned long i = 0; i < (length - 1); i++) {
-		if (array[i] > array[i + 1]) {
-			return 0;
-		}
-	}
-	return 1;
+    if (array == NULL) {
+        printf("Empty array given!\n");
+        return -1;
+    }
+    if (length == 1) {
+        return 1;
+    }
+    for (unsigned long i = 0; i < (length - 1); i++) {
+        if (array[i] > array[i + 1]) {
+            return 0;
+        }
+    }
+    return 1;
 }
 
 /*
@@ -100,20 +100,20 @@ int isSortedArray(int* array, unsigned long length) {
  * of the numArrays struct on the command line
  */
 void printArrays(numArrays* nA) {
-	if (nA == NULL) {
-		printf("Empty structure given!\n");
-		return;
-	}
-	if(nA->inverseSortedArray == NULL || nA->presortedArray == NULL || nA->randomArray == NULL) {
-		printf("Arrays not correctly initialized!\n");
-		return;
-	}
-	printf("Content of Arrays within numArray struct is:\n");
-	for (unsigned long i = 0; i < nA->numElements; i++) {
-		printf("%12d\t%12d\t%12d\n", nA->randomArray[i], nA->presortedArray[i],
-				nA->inverseSortedArray[i]);
-	}
-	printf("\n");
+    if (nA == NULL) {
+        printf("Empty structure given!\n");
+        return;
+    }
+    if (nA->inverseSortedArray == NULL || nA->presortedArray == NULL || nA->randomArray == NULL) {
+        printf("Arrays not correctly initialized!\n");
+        return;
+    }
+    printf("Content of Arrays within numArray struct is:\n");
+    for (unsigned long i = 0; i < nA->numElements; i++) {
+        printf("%12d\t%12d\t%12d\n", nA->randomArray[i], nA->presortedArray[i],
+               nA->inverseSortedArray[i]);
+    }
+    printf("\n");
 }
 
 /*
@@ -123,31 +123,31 @@ void printArrays(numArrays* nA) {
  * that all arrays are sorted in ascending manner. Else, a 0 is returned.
  */
 int isSorted(numArrays* nA) {
-	if (nA == NULL) {
-		printf("Empty structure given!\n");
-		return -1;
-	}
-	if(nA->inverseSortedArray == NULL || nA->presortedArray == NULL || nA->randomArray == NULL) {
-		printf("Arrays not correctly initialized!\n");
-		return -1;
-	}
-	int r = isSortedArray(nA->randomArray, nA->numElements);
-	(r == 1) ?
-			printf("Random Array is sorted.\n") :
-			printf("Random Array is NOT SORTED.\n");
-	int p = isSortedArray(nA->presortedArray, nA->numElements);
-	(p == 1) ?
-			printf("Presorted Array is sorted.\n") :
-			printf("Presorted Array is NOT SORTED (any more - Yikes!).\n");
-	int i = isSortedArray(nA->inverseSortedArray, nA->numElements);
-	(i == 1) ?
-			printf("Inverse presorted Array is sorted.\n") :
-			printf("Inverse presorted Array is NOT SORTED.\n");
-	(r && p && i) ?
-			printf("Well done.\n\n\n") :
-			printf("WROOOOOOOOOONG! Back to the drawing board...\n\n\n");
-	printf("\n");
-	return (r && p && i);
+    if (nA == NULL) {
+        printf("Empty structure given!\n");
+        return -1;
+    }
+    if (nA->inverseSortedArray == NULL || nA->presortedArray == NULL || nA->randomArray == NULL) {
+        printf("Arrays not correctly initialized!\n");
+        return -1;
+    }
+    int r = isSortedArray(nA->randomArray, nA->numElements);
+    (r == 1) ?
+    printf("Random Array is sorted.\n") :
+    printf("Random Array is NOT SORTED.\n");
+    int p = isSortedArray(nA->presortedArray, nA->numElements);
+    (p == 1) ?
+    printf("Presorted Array is sorted.\n") :
+    printf("Presorted Array is NOT SORTED (any more - Yikes!).\n");
+    int i = isSortedArray(nA->inverseSortedArray, nA->numElements);
+    (i == 1) ?
+    printf("Inverse presorted Array is sorted.\n") :
+    printf("Inverse presorted Array is NOT SORTED.\n");
+    (r && p && i) ?
+    printf("Well done.\n\n\n") :
+    printf("WROOOOOOOOOONG! Back to the drawing board...\n\n\n");
+    printf("\n");
+    return (r && p && i);
 }
 
 /*
@@ -159,16 +159,17 @@ int isSorted(numArrays* nA) {
  * with a certain array, stopping the time, measuring the time. The different input is the
  * actual sorting algorithm and the actual array to be sorted.
  */
-void callSorterForArray(void(*f)(int*,long unsigned int), int* arrayToSort, long unsigned int numElements, char* name, char* arrayStructure) {
-	//the following two lines initialize variables for
-	//performance benchmarking
-	clock_t startTime, endTime;
-	double computationTime;
-	startTime = clock();
-	(*f)(arrayToSort, numElements);
-	endTime = clock();
-	computationTime = ((double) (endTime - startTime)) / CLOCKS_PER_SEC;
-	printf("%s - %s values: %.2f seconds.\n", name, arrayStructure, computationTime);
+void callSorterForArray(void(* f)(int*, long unsigned int), int* arrayToSort, long unsigned int numElements, char* name,
+                        char* arrayStructure) {
+    //the following two lines initialize variables for
+    //performance benchmarking
+    clock_t startTime, endTime;
+    double computationTime;
+    startTime = clock();
+    (*f)(arrayToSort, numElements);
+    endTime = clock();
+    computationTime = ((double) (endTime - startTime)) / CLOCKS_PER_SEC;
+    printf("%s - %s values: %.2f seconds.\n", name, arrayStructure, computationTime);
 }
 
 /*
@@ -179,33 +180,34 @@ void callSorterForArray(void(*f)(int*,long unsigned int), int* arrayToSort, long
  * We take this even a step further and pass this function further to another function,
  * callSorterForArray.
  */
-void callSorter(void(*f)(int*,long unsigned int), numArrays* nA, char* name) {
-	initializeArrayContents(nA);
-	printf(
-			"Do you want to print the array contents before and after sorting by %s? (not recommended for larger lists (>10)) [y/n]?\n", name);
-	char print = getchar();
-	scanf("%*c");
-	(print == 'y' || print == 'Y') ? printArrays(nA) : 0;
-	printf("Now starting sorting by %s.\n", name);
-	callSorterForArray(f, nA->randomArray, nA->numElements, name, "random");
-	callSorterForArray(f, nA->presortedArray, nA->numElements, name, "presorted");
-	callSorterForArray(f, nA->inverseSortedArray, nA->numElements, name, "inverse sorted");
-	(print == 'y' || print == 'Y') ? printArrays(nA) : 0;
-	isSorted(nA);
+void callSorter(void(* f)(int*, long unsigned int), numArrays* nA, char* name) {
+    initializeArrayContents(nA);
+    printf(
+            "Do you want to print the array contents before and after sorting by %s? (not recommended for larger lists (>10)) [y/n]?\n",
+            name);
+    char print = getchar();
+    scanf("%*c");
+    (print == 'y' || print == 'Y') ? printArrays(nA) : 0;
+    printf("Now starting sorting by %s.\n", name);
+    callSorterForArray(f, nA->randomArray, nA->numElements, name, "random");
+    callSorterForArray(f, nA->presortedArray, nA->numElements, name, "presorted");
+    callSorterForArray(f, nA->inverseSortedArray, nA->numElements, name, "inverse sorted");
+    (print == 'y' || print == 'Y') ? printArrays(nA) : 0;
+    isSorted(nA);
 }
 
 /*
  * getUserInputs asks the user to define the length of the lists to be sorted
  */
 int getUserInput() {
-	int LENGTH_OF_LISTS;
-		printf(
-				"Please enter length of lists (Start with small numbers (5-10), the fun begins at lengths > 100000): \n");
-		scanf("%d%*c", &LENGTH_OF_LISTS);
-		if (LENGTH_OF_LISTS < 1) {
-			printf("Invalid length given! Aborting...\n");
-			return -1;
-		}
-		return LENGTH_OF_LISTS;
+    int LENGTH_OF_LISTS;
+    printf(
+            "Please enter length of lists (Start with small numbers (5-10), the fun begins at lengths > 100000): \n");
+    scanf("%d%*c", &LENGTH_OF_LISTS);
+    if (LENGTH_OF_LISTS < 1) {
+        printf("Invalid length given! Aborting...\n");
+        return -1;
+    }
+    return LENGTH_OF_LISTS;
 
 }

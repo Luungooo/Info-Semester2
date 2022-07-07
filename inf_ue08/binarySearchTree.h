@@ -1,8 +1,10 @@
-#ifndef INF_UE7_BINARYSEARCHTREE_H
-#define INF_UE7_BINARYSEARCHTREE_H
+#ifndef BINARYSEARCHTREE_H
+#define BINARYSEARCHTREE_H
+
 typedef struct binarySearchTree {
     int value;
     struct binarySearchTree* left;
     struct binarySearchTree* right;
-}bst;
-#endif //INF_UE7_BINARYSEARCHTREE_H
+} bst;
+
+#endif //BINARYSEARCHTREE_H

@@ -1,24 +1,23 @@
-#ifndef GRAPH_H_
-#define GRAPH_H_
-
+#ifndef GRAPH_H
+#define GRAPH_H
 
 typedef struct edge {
-	struct node* toNode;
-	unsigned int distance;
-	struct edge* next;
+    struct node* toNode;
+    unsigned int distance;
+    struct edge* next;
 } edge;
 
 typedef struct node {
-	char name;
-	int visited;
-	edge* edges;
-	struct node* next;
+    char name;
+    int visited;
+    edge* edges;
+    struct node* next;
 } node;
 
 typedef struct adjacencyMatrix {
-	unsigned int** A;
-	unsigned int numberOfNodes;
-	char* names;
+    unsigned int** A;
+    unsigned int numberOfNodes;
+    char* names;
 } adM;
 
-#endif
+#endif //GRAPH_H

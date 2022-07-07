@@ -1,11 +1,11 @@
-#ifndef NUMARRAYS_H_
-#define NUMARRAYS_H_
+#ifndef NUMARRAYS_H
+#define NUMARRAYS_H
 
 typedef struct numArrays {
-	int* randomArray;
-	int* presortedArray;
-	int* inverseSortedArray;
-	unsigned long numElements;
+    int* randomArray;
+    int* presortedArray;
+    int* inverseSortedArray;
+    unsigned long numElements;
 } numArrays;
 
-#endif
+#endif //NUMARRAYS_H
