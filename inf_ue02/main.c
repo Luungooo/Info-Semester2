@@ -13,14 +13,14 @@ int main() {
     myStruct a;
     myStruct b;
     a.myInteger = 4;
-    a.myFloat = 4.75;
+    a.myFloat = 4.75f;
     b.myInteger = 2;
-    b.myFloat = 0.524;
+    b.myFloat = 0.524f;
 
     myStruct* c = NULL;
     c = &b;
     c->myInteger = 7;
-    c->myFloat = 5.32;
+    c->myFloat = 5.32f;
 
     myList x;
     x.value = 2;
