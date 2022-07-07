@@ -22,15 +22,27 @@
 int solver(cb* myCB, unsigned int queen) {
     //start with the successful return, i.e.
     //the "Abbruchbedingung"
-
+    if (myCB == NULL) {
+        printf("Invalid board!\n");
+        return 0;
+    }
+    if (queen == myCB->size) {
+        return 1;
+    }
     //follow the instructions above the function...
-
-
-
-
-
-
-
+    unsigned int i = 0;
+    do {
+        if (isValid(myCB, i, queen)) {
+            myCB->board[i][queen] = 1;
+            if (solver(myCB, queen + 1)) {
+                return 1;
+            } else {
+                myCB->board[i][queen] = 0;
+            }
+        }
+        i++;
+    } while (i < myCB->size);
+    return 0;
 }
 
 /*
@@ -64,53 +76,47 @@ void solveEightQueensPuzzleViaBacktracking(cb* myCB) {
  */
 int solveMaze(maze* myMaze, unsigned int x, unsigned int y) {
     //in case we have found the exit, we return with ...?
-
-
-
+    if (x == myMaze->size - 1 && y == myMaze->size - 1) {
+        myMaze->theMaze[x][y] = 4;
+        return 1;
+    }
     //in case a hit a border of the maze, we return with ...?
-
-
-
+    if (x > myMaze->size - 1 || y > myMaze->size - 1) {
+        return 0;
+    }
     //in case we hit a wall, we return with ...?
-
-
-
+    if (myMaze->theMaze[x][y] == 1) {
+        return 0;
+    }
     //in case we already have been on this field, we return with ...?
-
-
-
+    if (myMaze->theMaze[x][y] == 2) {
+        return 0;
+    }
     //ok in case, we are inside the borders of the field, we are
     //not standing on a wall and we have not visited this field yet,
     //we mark it as visited
-
-
-
+    myMaze->theMaze[x][y] = 2;
     //now we see, if calling the solver on the next field to the right
     //returns the solution. (How do we check whether the function we have
     //called has found a solution?) If not, we try the field below us. If thats
     //also not successful, we try the field to the right or at least,
     //the field above us
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    if (solveMaze(myMaze, x, y + 1)) {
+        myMaze->theMaze[x][y] = 4;
+        return 1;
+    } else if (solveMaze(myMaze, x + 1, y)) {
+        myMaze->theMaze[x][y] = 5;
+        return 1;
+    } else if (solveMaze(myMaze, x, y - 1)) {
+        myMaze->theMaze[x][y] = 6;
+        return 1;
+    } else if (solveMaze(myMaze, x - 1, y)) {
+        myMaze->theMaze[x][y] = 7;
+        return 1;
+    }
     //in case we checked for every direction, but did not find the exit,
     //what do we return?
-
-
+    return 0;
 }
 
 /*
