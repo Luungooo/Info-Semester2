@@ -167,13 +167,13 @@ int findByDepthSearch(node* nodeList, char startNode, char candidate) {
 
     if (nodeList == NULL) {
         printf("Invalid pointer given!\n");
-        return;
+        return 0;
     }
     node* current = nodeList;
     node* node = NULL;
     while (1) {
         if (current == NULL) {
-            return;
+            return 0;
         }
         if (current->name == startNode) {
             node = current;
@@ -247,7 +247,7 @@ void freeAdjacencyMatrix(adM** myAdM) {
 adM* createAdjacencyMatrix(node* nodeList) {
     if (nodeList == NULL) {
         printf("Invalid pointer given!\n");
-        return;
+        return 0;
     }
     unsigned int numberOfNodes = 0;
     node* current = nodeList;
@@ -258,7 +258,7 @@ adM* createAdjacencyMatrix(node* nodeList) {
     adM* newAdjacencyMatrix = (adM*) malloc(sizeof(adM));
     newAdjacencyMatrix->numberOfNodes = numberOfNodes;
     newAdjacencyMatrix->A = (unsigned int**) malloc(numberOfNodes * sizeof(unsigned int*));
-    for (int i = 0; i < numberOfNodes; i++) {
+    for (unsigned int i = 0; i < numberOfNodes; i++) {
         newAdjacencyMatrix->A[i] = (unsigned int*) calloc(numberOfNodes, sizeof(unsigned int));
     }
     newAdjacencyMatrix->names = (char*) malloc(numberOfNodes * sizeof(char));

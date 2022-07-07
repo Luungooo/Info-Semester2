@@ -111,37 +111,37 @@ int main() {
 
     myList* headOfSortedList = NULL;
     if (!addSorted(&headOfSortedList, 5)) {
-        printf("Konnte Element nicht hinzuf�gen!\n");
+        printf("Konnte Element nicht hinzufuegen!\n");
         return EXIT_FAILURE;
     }
     printList(headOfSortedList);
     printf("\n");
     if (!addSorted(&headOfSortedList, 3)) {
-        printf("Konnte Element nicht hinzuf�gen!\n");
+        printf("Konnte Element nicht hinzufuegen!\n");
         return EXIT_FAILURE;
     }
     printList(headOfSortedList);
     printf("\n");
     if (!addSorted(&headOfSortedList, 53)) {
-        printf("Konnte Element nicht hinzuf�gen!\n");
+        printf("Konnte Element nicht hinzufuegen!\n");
         return EXIT_FAILURE;
     }
     printList(headOfSortedList);
     printf("\n");
     if (!addSorted(&headOfSortedList, 1)) {
-        printf("Konnte Element nicht hinzuf�gen!\n");
+        printf("Konnte Element nicht hinzufuegen!\n");
         return EXIT_FAILURE;
     }
     printList(headOfSortedList);
     printf("\n");
     if (!addSorted(&headOfSortedList, 66)) {
-        printf("Konnte Element nicht hinzuf�gen!\n");
+        printf("Konnte Element nicht hinzufuegen!\n");
         return EXIT_FAILURE;
     }
     printList(headOfSortedList);
     printf("\n");
     if (!addSorted(&headOfSortedList, 12)) {
-        printf("Konnte Element nicht hinzuf�gen!\n");
+        printf("Konnte Element nicht hinzufuegen!\n");
         return EXIT_FAILURE;
     }
     printList(headOfSortedList);

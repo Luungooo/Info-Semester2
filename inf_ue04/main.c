@@ -63,7 +63,7 @@ int main() {
     myList* head = NULL;
     head = (myList*) malloc(sizeof(myList));
     if (head == NULL) {
-        printf("Konnte Element nicht hinzuf�gen!\n");
+        printf("Konnte Element nicht hinzufuegen!\n");
         return EXIT_FAILURE;
     }
     head->value = 1;

@@ -152,7 +152,7 @@ int main(void) {
     //We pass a function (our sorting algorithm) as an argument into
     //the function callSorter. If have a look in sortingHelperStructures.c
     //you will see, how the parameter list looks like
-    callSorter(mySort, myNA, "mySort");
+    //callSorter(mySort, myNA, "mySort");
     //callSorter(insertionSort, myNA, "Insertionsort");
     callSorter(mergeSort, myNA, "Mergesort");
     callSorter(quicksort, myNA, "Quicksort");
